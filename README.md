@@ -16,11 +16,15 @@ import writefreely as wf
 # default WriteFreely instance is 'https://write.as'
 c = wf.client(user='foo', password='bar')
 
-# post something to "cool-stuff" collection(blog)
-post = c.publish(collection='cool-stuff', body='Hello world!')
+# post something to "cool-stuff" collection/blog
+post = c.create_post(collection='cool-stuff', body='Hello world!')
 
 print('Visit your new post at:', post['collection']['url'] + post['slug'])
 ```
 
 Too see what extra parameters some functions accept and response structure, check:
 https://developers.write.as/docs/api
+
+## Examples
+
+Check the examples folder for more code examples.
