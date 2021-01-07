@@ -12,7 +12,7 @@ c = wf.client(user='foo', password='bar')
 #    c = wf.client(token=fd.read())
 
 # post something to "cool-stuff" collection
-post = c.publish(collection='cool-stuff', title='Cool Article', body='Hello world!')
+post = c.create_post(collection='cool-stuff', title='Cool Article', body='Hello world!')
 print('Visit your new post at:', post['collection']['url'] + post['slug'])
 
 # c.logout()
