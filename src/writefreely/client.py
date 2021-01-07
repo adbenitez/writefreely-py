@@ -1,5 +1,6 @@
 """WriteFreely API client.
 """
+from json import JSONDecodeError
 from typing import Callable, List, Optional, Union
 
 import requests
@@ -13,16 +14,15 @@ class Client:
 
     def _request(self, action: Callable, endpoint: str,
                  data: Union[dict, list] = None,
-                 headers: dict = {}) -> Union[dict, list]:
+                 headers: dict = {}) -> Union[dict, list, None]:
         headers['Content-Type'] = 'application/json'
         if self.token:
             headers['Authorization'] = 'Token {}'.format(self.token)
         with action(self.host + endpoint, json=data, headers=headers) as resp:
-            data  = resp.json()
-            if resp.status_code >= 400:
-                raise ValueError(
-                    '[{}] {}'.format(data['error'], data["error_msg"]))
-            return data.get('data')
+            resp.raise_for_status()
+            if resp.text:
+                return resp.json()['data']
+            return None
 
     def _get(self, endpoint: str, data: Union[dict, list] = None, headers: dict = {}) -> Union[dict, list]:
         return self._request(requests.get, endpoint, data, headers)
