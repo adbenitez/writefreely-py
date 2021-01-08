@@ -4,11 +4,6 @@ import setuptools
 if __name__ == "__main__":
     with open('README.md') as file:
         long_desc = file.read()
-    with open('src/writefreely/__init__.py') as file:
-        for line in file.readlines():
-            if line.startswith('__version__'):
-                version = line.split('=')[1].strip().strip('\'"')
-                break
     with open('requirements.txt') as file:
         install_requires = [
             line.replace('==', '>=') for line in file.read().split('\n')
@@ -16,7 +11,6 @@ if __name__ == "__main__":
 
     setuptools.setup(
         name='writefreely-py',
-        version=version,
         description='A Python package wrapping the WriteFreely / Write.as API',
         long_description=long_desc,
         long_description_content_type="text/markdown",
