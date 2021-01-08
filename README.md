@@ -1,6 +1,6 @@
-# WriteFreely API
+# WriteFreely
 
-A [WriteFreely](https://writefreely.org) API client library for Python.
+A Python package that wraps the [WriteFreely](https://writefreely.org) API, for use in your Python projects.
 
 ## Install
 
@@ -16,10 +16,13 @@ import writefreely as wf
 # default WriteFreely instance is 'https://write.as'
 c = wf.client(user='foo', password='bar')
 
-# post something to "cool-stuff" collection/blog
-post = c.create_post(collection='cool-stuff', body='Hello world!')
+# create a post
+post = c.create_post(title='Hello World!', body='Hello from **Python**')
 
-print('Visit your new post at:', post['collection']['url'] + post['slug'])
+print('See your post at: {}/{}'.format(c.host, post['slug']))
+
+# discard current session
+c.logout()
 ```
 
 Too see what extra parameters some functions accept and response structure, check:
