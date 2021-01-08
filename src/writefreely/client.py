@@ -123,6 +123,7 @@ class Client:
 
         If done anonymously, it requires past knowledge of the existing
         post's token.
+        See https://developers.write.as/docs/api/#update-a-post
         """
         return self._post(
             '/api/posts/' + post_id,
@@ -142,23 +143,40 @@ class Client:
             needs_auth=self.is_authenticated(),
         )
 
-    def claim_post(self, post_id: str, post_token: str,
-                   collection: str = None) -> dict:
-        """Add unowned post to the user/account. If collection is given,
-        then add post to the collection.
-        """
+    def claim_post(self, post_id: str, post_token: str) -> dict:
+        """Add unowned post to the user/account."""
         return self.claim_posts(
+            [{'id': post_id, 'token': post_token}])[0]
+
+    def claim_posts(self, posts: List[dict]) -> List[dict]:
+        """Add unowned posts to user/account.
+
+        See https://developers.write.as/docs/api/#claim-posts
+        """
+        return self._post('/api/posts/claim', data=posts, needs_auth=True)
+
+    def move_post(self, post_id: str, collection: str,
+                  post_token: str = None) -> dict:
+        """Move a post to a collection.
+
+        Add a post to a collection. This works for either posts that
+        were created anonymously (i.e. don't belong to the user account)
+        or posts already owned by the user account.
+        """
+        return self.move_posts(
             [{'id': post_id, 'token': post_token}], collection)[0]
 
-    def claim_posts(self, posts: List[dict], collection: str = None) -> List[dict]:
-        """Add unowned posts to user/account. If collection is given,
-        then add the group of posts to the collection.
+    def move_posts(self, posts: List[dict], collection: str) -> List[dict]:
+        """Move posts to a Collection.
+
+        Add a group of posts to a collection. This works for either posts
+        that were created anonymously (i.e. don't belong to the user 
+        account) or posts already owned by the user account.
+        See https://developers.write.as/docs/api/#claim-posts
         """
-        if collection:
-            endpoint = '/api/collections/{}/collect'.format(collection)
-        else:
-            endpoint = '/api/posts/claim'
-        return self._post(endpoint, data=posts, needs_auth=True)
+        return self._post(
+            '/api/collections/{}/collect'.format(collection),
+            data=posts, needs_auth=True)
 
     def pin_post(self, post_id: str, collection: str,
                  post_position: int = None) -> dict:
