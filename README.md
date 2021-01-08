@@ -27,4 +27,4 @@ https://developers.write.as/docs/api
 
 ## Examples
 
-Check the examples folder for more code examples.
+Check the [examples folder](https://github.com/adbenitez/writefreely-py/tree/main/examples) for more code examples.
