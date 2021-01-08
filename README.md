@@ -10,7 +10,7 @@ pip install writefreely-py
 
 ## Quick Start
 
-```
+```python
 import writefreely as wf
 
 # default WriteFreely instance is 'https://write.as'
