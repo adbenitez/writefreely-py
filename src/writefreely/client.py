@@ -1,6 +1,5 @@
 """WriteFreely API client.
 """
-from json import JSONDecodeError
 from typing import Callable, List, Optional, Union
 
 import requests
@@ -60,7 +59,7 @@ class Client:
 
     def logout(self) -> None:
         """Log out of the WriteFreely instance.
-        
+
         Un-authenticates a user with WriteFreely, permanently invalidating
         the access token used with the request.
         """
@@ -82,7 +81,7 @@ class Client:
 
     def create_post(self, body: str, collection: str = None, **kwargs) -> dict:
         """Publish a post.
-        
+
         This creates a new post, associating it with a user account if
         authenticated. If collection is given, post will be published in
         that collection.
@@ -170,7 +169,7 @@ class Client:
         """Move posts to a Collection.
 
         Add a group of posts to a collection. This works for either posts
-        that were created anonymously (i.e. don't belong to the user 
+        that were created anonymously (i.e. don't belong to the user
         account) or posts already owned by the user account.
         See https://developers.write.as/docs/api/#claim-posts
         """
@@ -181,8 +180,8 @@ class Client:
     def pin_post(self, post_id: str, collection: str,
                  post_position: int = None) -> dict:
         """Pin a post to a collection.
-        
-        Pinned posts will show up as a navigation items in the 
+
+        Pinned posts will show up as a navigation items in the
         collection/blog home page header, instead of on the blog itself.
         """
         return self.pin_posts(
@@ -190,14 +189,14 @@ class Client:
 
     def pin_posts(self, posts: List[dict], collection: str) -> List[dict]:
         """Pin posts to a collection.
-        
-        Pinned posts will show up as a navigation items in the 
+
+        Pinned posts will show up as a navigation items in the
         collection/blog home page header, instead of on the blog itself.
         See https://developers.write.as/docs/api/#pin-a-post-to-a-collection
         """
         return self._post('/api/collections/{}/pin'.format(collection),
                           data=posts, needs_auth=True)
-        
+
     def unpin_post(self, post_id: str, collection: str) -> dict:
         """Unpin a post from a collection.
 
@@ -262,7 +261,7 @@ class Client:
         self._delete('/api/collections/' + alias, needs_auth=True)
 
     def get_channels(self) -> List[dict]:
-        """Return an array of the authenticated user's connected channels, or integrations.
+        """Return a list of the authenticated user's connected channels, or integrations.
 
         For channels that aren't a centralized service, like Mastodon,
         you'll also see a url property of the specific instance or host

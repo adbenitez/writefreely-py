@@ -36,7 +36,8 @@ c.delete_post(post2['id'])
 
 # claiming a post
 anonymous = wf.client()
-anon_post = anonymous.create_post(title='My anonymous post', body='Anonymous body')
+anon_post = anonymous.create_post(
+    title='My anonymous post', body='Anonymous body')
 c.claim_post(anon_post['id'], anon_post['token'])
 
 # pinning post
