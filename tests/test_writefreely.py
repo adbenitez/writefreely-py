@@ -5,7 +5,7 @@ import writefreely as wf
 
 def test_account(requests_mock) -> None:
     client = wf.client(token="test-token1")
-    assert client.token is "test-token1"
+    assert client.token == "test-token1"
 
     client = wf.client()
     assert client.host == "https://write.as"
