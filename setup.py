@@ -9,6 +9,12 @@ if __name__ == "__main__":
             for line in file.read().split("\n")
             if line and not line.startswith(("#", "-"))
         ]
+    with open("requirements-test.txt") as file:
+        test_deps = [
+            line.replace("==", ">=")
+            for line in file.read().split("\n")
+            if line and not line.startswith(("#", "-"))
+        ]
 
     setuptools.setup(
         name="writefreely-py",
@@ -32,4 +38,5 @@ if __name__ == "__main__":
         ],
         python_requires=">=3.5",
         install_requires=install_requires,
+        extras_require={"test": test_deps},
     )
