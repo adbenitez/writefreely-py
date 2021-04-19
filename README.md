@@ -1,5 +1,12 @@
 # WriteFreely
 
+[![Latest Release](https://img.shields.io/pypi/v/writefreely-py.svg)](https://pypi.org/project/writefreely-py)
+[![Supported Versions](https://img.shields.io/pypi/pyversions/writefreely-py.svg)](https://pypi.org/project/writefreely-py)
+[![Downloads](https://pepy.tech/badge/writefreely-py)](https://pepy.tech/project/writefreely-py)
+[![License](https://img.shields.io/pypi/l/writefreely-py.svg)](https://pypi.org/project/writefreely-py)
+[![CI](https://github.com/adbenitez/writefreely-py/actions/workflows/python-ci.yml/badge.svg)](https://github.com/adbenitez/writefreely-py/actions/workflows/python-ci.yml)
+[![Code style: black](https://img.shields.io/badge/code%20style-black-000000.svg)](https://github.com/psf/black)
+
 A Python package that wraps the [WriteFreely](https://writefreely.org) API, for use in your Python projects.
 
 ## Install
