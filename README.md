@@ -20,20 +20,20 @@ pip install writefreely-py
 ```python
 import writefreely as wf
 
-# default WriteFreely instance is 'https://write.as'
-c = wf.client(user='foo', password='bar')
+# default WriteFreely instance is "https://write.as"
+c = wf.client(user="foo", password="bar")
 
 # create a post
-post = c.create_post(title='Hello World!', body='Hello from **Python**')
+post = c.create_post(title="Hello World!", body="Hello from **Python**")
 
-print('See your post at: {}/{}'.format(c.host, post['slug']))
+print(f"See your post at: {c.host}/{post['slug']}")
 
 # discard current session
 c.logout()
 ```
 
 Too see what extra parameters some functions accept and response structure, check:
-https://developers.write.as/docs/api
+https://developers.write.as/docs/api/
 
 ## Examples
 
