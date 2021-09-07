@@ -1,8 +1,13 @@
 """WriteFreely API client.
 """
+
+import functools
 from typing import Callable, List, Optional, Union
 
 import requests
+
+session = requests.Session()
+session.request = functools.partial(session.request, timeout=15)  # noqa
 
 
 class Client:
@@ -35,13 +40,13 @@ class Client:
                 return resp.json()["data"]
 
     def _get(self, endpoint: str, **kwargs):
-        return self._request(requests.get, endpoint, **kwargs)
+        return self._request(session.get, endpoint, **kwargs)
 
     def _post(self, endpoint: str, **kwargs):
-        return self._request(requests.post, endpoint, **kwargs)
+        return self._request(session.post, endpoint, **kwargs)
 
     def _delete(self, endpoint: str, **kwargs):
-        return self._request(requests.delete, endpoint, **kwargs)
+        return self._request(session.delete, endpoint, **kwargs)
 
     # ===== ACCOUNT =====
 
