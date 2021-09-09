@@ -27,8 +27,8 @@ class Client:
         data: Union[dict, list] = None,
         headers: dict = None,
         needs_auth: bool = True,
-    ):
-        headers = headers or dict()
+    ) -> Optional[dict]:
+        headers = headers or {}
         headers["Content-Type"] = "application/json"
         if needs_auth:
             if not self.is_authenticated():
@@ -38,6 +38,7 @@ class Client:
             resp.raise_for_status()
             if resp.text:
                 return resp.json()["data"]
+        return None
 
     def _get(self, endpoint: str, **kwargs):
         return self._request(session.get, endpoint, **kwargs)
