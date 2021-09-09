@@ -1,6 +1,6 @@
 # Changelog
 
-## [Unreleased]
+## [1.2.0]
 
 - use timeout in requests to avoid hangs.
 
@@ -13,6 +13,8 @@
 - initial release
 
 
-[Unreleased]: https://github.com/adbenitez/writefreely-py/compare/v1.1.0...HEAD
+[Unreleased]: https://github.com/adbenitez/writefreely-py/compare/v1.2.0...HEAD
+
+[1.2.0]: https://github.com/adbenitez/writefreely-py/compare/v1.1.0...v1.2.0
 
 [1.1.0]: https://github.com/adbenitez/writefreely-py/compare/v1.0.0...v1.1.0
